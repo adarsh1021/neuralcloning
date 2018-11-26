@@ -1,0 +1,165 @@
+<html>
+<head>
+	<title>Train</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		/*$(document).ready(function() {
+
+		    $('#imageFile').change(function(evt) {
+
+		        var files = evt.target.files;
+		        var file = files[0];
+
+		        if (file) {
+		            var reader = new FileReader();
+		            reader.onload = function(e) {
+		                document.getElementById('preview').src = e.target.result;
+		            };
+		            reader.readAsDataURL(file);
+		        }
+		    });
+		});*/
+		var dataurl;
+		function ResizeImage() {
+		    if (window.File && window.FileReader && window.FileList && window.Blob) {
+		        var filesToUploads = document.getElementById('imageFile').files;
+		        var file = filesToUploads[0];
+		        if (file) {
+
+		            var reader = new FileReader();
+		            // Set the image once loaded into file reader
+		            reader.onload = function(e) {
+
+		                var img = document.createElement("img");
+		                img.src = e.target.result;
+
+		                var canvas = document.createElement("canvas");
+		                var ctx = canvas.getContext("2d");
+		                ctx.drawImage(img, 0, 0);
+
+		                var MAX_WIDTH = 512;
+		                var MAX_HEIGHT = 512;
+		                var width = img.width;
+		                var height = img.height;
+
+		                if (width > height) {
+		                    if (width > MAX_WIDTH) {
+		                        height *= MAX_WIDTH / width;
+		                        width = MAX_WIDTH;
+		                    }
+		                } else {
+		                    if (height > MAX_HEIGHT) {
+		                        width *= MAX_HEIGHT / height;
+		                        height = MAX_HEIGHT;
+		                    }
+		                }
+		                canvas.width = width;
+		                canvas.height = height;
+		                var ctx = canvas.getContext("2d");
+		                ctx.drawImage(img, 0, 0, width, height);
+
+		                dataurl = canvas.toDataURL(file.type);
+		                document.getElementById('output').src = dataurl;   
+		            }
+		            reader.readAsDataURL(file);
+		            
+	                
+		        }
+
+
+		    } else {
+		        alert('The File APIs are not fully supported in this browser.');
+		    }
+		}
+
+
+/*
+		function Resize() {
+			if (window.File && window.FileReader && window.FileList && window.Blob) {
+		        var filesToUploads = document.getElementById('imageFile').files;
+		        var file = filesToUploads[0];
+		        if (file) {
+
+		            var reader = new FileReader();
+		            // Set the image once loaded into file reader
+		            reader.onload = function(e) {
+
+		                var img = document.createElement("img");
+		                img.src = e.target.result;
+
+		                var canvas = document.createElement("canvas");
+		                var ctx = canvas.getContext("2d");
+		                ctx.drawImage(img, 0, 0);
+
+		                var MAX_WIDTH = 64;
+		                var MAX_HEIGHT = 64;
+		                var width = img.width;
+		                var height = img.height;
+
+		                if (width > height) {
+		                    if (width > MAX_WIDTH) {
+		                        height *= MAX_WIDTH / width;
+		                        width = MAX_WIDTH;
+		                    }
+		                } else {
+		                    if (height > MAX_HEIGHT) {
+		                        width *= MAX_HEIGHT / height;
+		                        height = MAX_HEIGHT;
+		                    }
+		                }
+		                canvas.width = width;
+		                canvas.height = height;
+		                var ctx = canvas.getContext("2d");
+		                ctx.drawImage(img, 0, 0, width, height);
+			return canvas.toDataURL(file.type);
+		}
+	}
+		}
+	}
+
+*/
+
+		$(document).ready(function() {
+			$("#id-submit").click(function() {
+				//console.log($('form').get(0));
+				// console.log(dataurl);
+				$.ajax({
+                 type:"POST",
+                 url:"/upload",
+                 data: {
+                        'base64_img': dataurl, // The image data
+                        },
+                 success: function(){
+                     console.log("success");
+                     location.reload();
+                 }
+            });
+            return false;
+			});
+		});
+	</script>
+</head>
+<body>
+
+<!--form method="post" enctype="multipart/form-data"-->
+	<input id="imageFile" name="imageFile" type="file" class="imageFile"  accept="image/*"> 
+    <!--input type="file" name="myfile"><br-->
+    <br><br>
+
+    <input type="button" value="Resize Image"  onclick="ResizeImage()"/> 
+	<br/>
+	<img src="" id="preview">
+
+	<img name="output" src="" id="output">
+
+    <br><button id="id-submit" type="submit">Upload</button>
+   
+<!--/form-->
+
+<!--form>
+	<input type="file" name="video" accept="video/*;capture=camera">
+	<input type="submit" id="id-submit" value="Upload">
+</form-->
+
+</body>
+</html>
