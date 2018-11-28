@@ -31,9 +31,11 @@
 		            reader.onload = function(e) {
 
 		                var img = document.createElement("img");
+
 		                img.src = e.target.result;
 
 		                var canvas = document.createElement("canvas");
+		                //console.log(canvas);
 		                var ctx = canvas.getContext("2d");
 		                ctx.drawImage(img, 0, 0);
 
@@ -125,7 +127,7 @@
 				// console.log(dataurl);
 				$.ajax({
                  type:"POST",
-                 url:"/upload",
+                 url:"/upload/",
                  data: {
                         'base64_img': dataurl, // The image data
                         },

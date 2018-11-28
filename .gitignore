@@ -91,3 +91,8 @@ local_settings.py
 
 .env
 db.sqlite3
+
+.h5
+
+pose_estimation
+pix2pix
