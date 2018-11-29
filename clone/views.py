@@ -2,15 +2,18 @@ from django.shortcuts import render, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 import os
 import base64
-from .celery_test import test
+# from .celery_test import test
 
-from clone_script import clone
+# from clone_script import clone
 
 def index(request):
 	return render(request, 'clone/index.html')
 
 def results(request):
 	return render(request, 'clone/results.html')
+
+def login(request):
+	return render(request, 'clone/login.html')
 
 @csrf_exempt
 def upload(request):
@@ -23,6 +26,6 @@ def upload(request):
 		filename = directory + ".jpg"
 		with open(filename, "wb") as fh:
 		    fh.write(base64.b64decode(imgstr))
-		clone.delay()
+		# clone.delay()
 		return HttpResponse("success")
 	return HttpResponse("fail")
