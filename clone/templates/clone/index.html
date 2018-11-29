@@ -1,7 +1,18 @@
 <html>
 <head>
 	<title>Train</title>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 	<script type="text/javascript">
 		/*$(document).ready(function() {
 
@@ -142,19 +153,26 @@
 	</script>
 </head>
 <body>
+	<nav class="navbar navbar-dark bg-dark">
+  		<span class="navbar-brand mb-0 h1">Neural Cloning</span>
+	</nav>
 
-<!--form method="post" enctype="multipart/form-data"-->
-	<input id="imageFile" name="imageFile" type="file" class="imageFile"  accept="image/*"> 
-    <!--input type="file" name="myfile"><br-->
-    <br><br>
+	<div class="container">
+		<br>
+		<h2>Upload Subject Image</h2><br>
+		<!--form method="post" enctype="multipart/form-data"-->
+		<input id="imageFile" name="imageFile" type="file" class="imageFile"  accept="image/*"> 
+	    <!--input type="file" name="myfile"><br-->
+	    <br><br>
 
-    <input type="button" value="Resize Image"  onclick="ResizeImage()"/> 
-	<br/>
-	<img src="" id="preview">
+	    <input type="button" value="Resize Image"  onclick="ResizeImage()"/> 
+		<br/>
+		<img src="" id="preview">
 
-	<img name="output" src="" id="output">
+		<img name="output" src="" id="output">
 
-    <br><button id="id-submit" type="submit">Upload</button>
+	    <br><button id="id-submit" type="submit">Upload</button>
+	</div>
    
 <!--/form-->
 
