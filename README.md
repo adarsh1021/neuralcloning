@@ -1,2 +1,4 @@
 # Neural Cloning
-Implementation of Everybody Dance Now with voice also, to completely transfer subject's video and audio to target
+Implementation of Everybody Dance Now using pose estimation & pix2pix.  
+
+![Result](result.png)

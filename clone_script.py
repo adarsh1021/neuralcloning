@@ -158,21 +158,18 @@ def clone():
         if (sn < stages):
             x = Concatenate()([stageT_branch1_out, stageT_branch2_out, stage0_out])
 
+    # Loading the Model
     model = Model(img_input, [stageT_branch1_out, stageT_branch2_out])
     model.load_weights(weights_path)
-
 
     ## Load Image
     test_image = INPUT
     oriImg = cv2.imread(test_image) # B,G,R order
     # plt.imshow(oriImg[:,:,[2,1,0]])
 
-
     ## Load Configuration
     param, model_params = config_reader()
-
     multiplier = [x * model_params['boxsize'] / oriImg.shape[0] for x in param['scale_search']]
-
 
     ## Save Sample Heat Maps for Right Elbow & PAF (Patch Autocorrelation Features) for right wrist & right elbow
     heatmap_avg = np.zeros((oriImg.shape[0], oriImg.shape[1], 19))
